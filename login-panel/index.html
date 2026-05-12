@@ -1,1 +1,243 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+</head>
 
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    body {
+        background-color: #0a0a0a;
+        min-height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    }
+
+    .login-box {
+        width: 420px;
+        min-height: 520px;
+        background: rgba(22, 22, 22, 0.9);
+        border: 1px solid rgba(255, 255, 255, 0.06);
+        border-radius: 8px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 28px;
+        position: relative;
+        padding: 42px 18px;
+        backdrop-filter: blur(10px);
+        box-shadow: 0 25px 60px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.03);
+    }
+
+    .login-box::before {
+        content: '';
+        position: absolute;
+        top: -1px;
+        left: -1px;
+        right: -1px;
+        bottom: -1px;
+        background: linear-gradient(135deg, rgba(255, 255, 255, 0.08), transparent 40%, transparent 60%, rgba(255, 255, 255, 0.04));
+        border-radius: 8px;
+        z-index: -1;
+    }
+
+    .login-icon {
+        width: 56px;
+        height: 56px;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.04);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 8px;
+        border: 1px solid rgba(255, 255, 255, 0.06);
+    }
+
+    .login-icon svg {
+        width: 24px;
+        height: 24px;
+        stroke: rgba(255, 255, 255, 0.5);
+        fill: none;
+        stroke-width: 1.5;
+    }
+
+    .login-title {
+        color: rgba(255, 255, 255, 0.8);
+        font-size: 22px;
+        font-weight: 500;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        margin-bottom: -12px;
+    }
+
+    .login-mail {
+        width: 280px;
+        position: relative;
+    }
+
+    .login-mail input {
+        width: 100%;
+        height: 46px;
+        border-radius: 12px;
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        background-color: rgba(255, 255, 255, 0.03);
+        padding: 0 16px;
+        outline: none;
+        color: rgba(255, 255, 255, 0.85);
+        font-size: 14px;
+        transition: all 0.3s ease;
+        direction: ltr;
+    }
+
+    .login-mail input::placeholder {
+        color: rgba(255, 255, 255, 0.25);
+        letter-spacing: 1px;
+        font-size: 12px;
+    }
+
+    .login-mail input:focus {
+        border-color: rgba(255, 255, 255, 0.2);
+        background-color: rgba(255, 255, 255, 0.05);
+        box-shadow: 0 0 20px rgba(255, 255, 255, 0.03);
+    }
+
+    .login-password {
+        width: 280px;
+        position: relative;
+    }
+
+    .login-password input {
+        width: 100%;
+        height: 46px;
+        border-radius: 12px;
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        background-color: rgba(255, 255, 255, 0.03);
+        padding: 0 16px;
+        outline: none;
+        color: rgba(255, 255, 255, 0.85);
+        font-size: 14px;
+        transition: all 0.3s ease;
+        letter-spacing: 2px;
+        direction: ltr;
+    }
+
+    .login-password input::placeholder {
+        color: rgba(255, 255, 255, 0.25);
+        letter-spacing: 1px;
+        font-size: 12px;
+    }
+
+    .login-password input:focus {
+        border-color: rgba(255, 255, 255, 0.2);
+        background-color: rgba(255, 255, 255, 0.05);
+        box-shadow: 0 0 20px rgba(255, 255, 255, 0.03);
+    }
+
+    .login-btn {
+        width: 280px;
+        margin-top: 8px;
+    }
+
+    .login-btn button {
+        width: 100%;
+        height: 46px;
+        border-radius: 12px;
+        background: rgba(255, 255, 255, 0.9);
+        border: none;
+        color: #0a0a0a;
+        font-weight: 600;
+        font-size: 14px;
+        letter-spacing: 2px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        text-transform: uppercase;
+    }
+
+    .login-btn button:hover {
+        background: rgba(255, 255, 255, 1);
+        box-shadow: 0 8px 30px rgba(255, 255, 255, 0.1);
+        transform: translateY(-1px);
+    }
+
+    .login-btn button:active {
+        transform: translateY(0);
+        background: rgba(255, 255, 255, 0.75);
+    }
+
+    .login-btn button:disabled {
+        cursor: wait;
+        opacity: 0.65;
+        transform: none;
+    }
+
+    .login-divider {
+        width: 280px;
+        height: 1px;
+        background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.08), transparent);
+    }
+
+    .msg {
+        width: 280px;
+        min-height: 20px;
+        color: #ffb4b4;
+        font-size: 13px;
+        line-height: 1.7;
+        text-align: center;
+    }
+
+    @media (max-width: 480px) {
+        body {
+            padding: 18px;
+        }
+
+        .login-box {
+            width: 100%;
+        }
+
+        .login-mail,
+        .login-password,
+        .login-btn,
+        .login-divider,
+        .msg {
+            width: min(280px, 100%);
+        }
+    }
+
+</style>
+
+<body>
+    <form class="login-box" id="login-form" autocomplete="on">
+        <div class="login-icon">
+            <svg viewBox="0 0 24 24">
+                <circle cx="12" cy="8" r="4"/>
+                <path d="M4 20c0-4 3.6-7 8-7s8 3 8 7" stroke-linecap="round"/>
+            </svg>
+        </div>
+        <div class="login-title">LOGIN</div>
+        <div class="login-divider"></div>
+        <div class="login-mail">
+            <input type="text" name="username" id="mail-input" placeholder="Username" autocomplete="username" maxlength="180" required>
+        </div>
+        <div class="login-password">
+            <input type="password" name="password" id="password-input" placeholder="Password" autocomplete="current-password" maxlength="256" required>
+        </div>
+        <div class="msg" id="login-message" aria-live="polite"></div>
+        <div class="login-btn">
+            <button id="salam" type="submit">LOGIN</button>
+        </div>
+    </form>
+
+    <script src="/assets/app.js"></script>
+</body>
+
+</html>
